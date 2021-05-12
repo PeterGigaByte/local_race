@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="topnav" th:fragment="navigation">
+    <a  th:class="${activePage == 'races'} ? 'active' : ''" href="/">Preteky</a>
+    <a  th:class="${activePage == 'disciplines'} ? 'active' : ''" href="/disciplines">Disciplíny</a>
+    <a  th:class="${activePage == 'applications'} ? 'active' : ''" href="/applications">Prihlášky</a>
+    <a  th:class="${activePage == 'results'} ? 'active' : ''" href="/results">Výsledky</a>
+    <a  th:class="${activePage == 'database'} ? 'active' : ''"  onclick="openNav()">Databáza klubov a pretekárov</a>
+    <span th:if="${activePage == 'applications'}">
+        <a id="Tooltip-2" style="float: right" class="target">Informácie</a>
+    </span>
+</div>
+</body>
+</html>
