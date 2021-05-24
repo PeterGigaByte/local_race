@@ -9,7 +9,7 @@ function ajaxPostGetRaceById(id){
         id:id
     };
     $.ajax({
-        type : "POST",
+        type : "GET",
         contentType : "application/json",
         accept: 'text/plain',
         url : window.location + "races/findRace",
@@ -489,7 +489,7 @@ $(document).ready(function () {
             id:id
         };
         $.ajax({
-            type : "POST",
+            type : "DELETE",
             contentType : "application/json",
             accept: 'text/plain',
             url : window.location + "races/delete",

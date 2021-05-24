@@ -41,6 +41,26 @@ public class ResultStartList implements Serializable {
 
     @Column(name = "reaction")
     private Double reaction;
+
+    @Column(name = "absolute_result_performance")
+    private String absoluteOrder;
+
+    @Column(name = "points")
+    private Integer points;
+
+    @Column(name = "status")
+    private String status;
+
+    public String getReactions(){
+        if(reaction!=null){
+            return String.format("%.3f", reaction);
+        }
+        else{
+            return null;
+        }
+
+    }
+
     public String  getTimeStartPerformance(){
        return timeFormattedReturn(startPerformance);
     }
@@ -104,5 +124,8 @@ public class ResultStartList implements Serializable {
         place= resultStartList.getPlace();
         line= resultStartList.getLine();
         reaction= resultStartList.getReaction();
+        absoluteOrder= resultStartList.getAbsoluteOrder();
+        points = resultStartList.getPoints();
+        status = resultStartList.getStatus();
     }
 }

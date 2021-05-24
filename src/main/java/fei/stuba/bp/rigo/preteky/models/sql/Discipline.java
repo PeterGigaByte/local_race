@@ -64,6 +64,7 @@ public class Discipline implements Serializable {
     private String wind;
 
 
+
     public Discipline() {
     }
 

@@ -89,7 +89,7 @@ $(document).ready(function () {
 
     function deleteEmptyDisciplines() {
         $.ajax({
-            type : "GET",
+            type : "DELETE",
             url : window.location + "/empty/delete",
             success: function(result){
                 refreshDisciplines();
@@ -630,7 +630,7 @@ $(document).ready(function () {
                 $("#note").val(discipline.note);
                 id = {id:discipline.id};
                 $.ajax({
-                    type : "POST",
+                    type : "PUT",
                     contentType : "application/json",
                     accept: 'text/plain',
                     url : window.location + "/disciplineEdit/settings",
@@ -739,7 +739,7 @@ $(document).ready(function () {
     });
     function cameraNumbering() {
         $.ajax({
-            type : "GET",
+            type : "PUT",
             url : window.location + "/camera/numbering",
             success: function(result){
                 new jBox('Notice', {

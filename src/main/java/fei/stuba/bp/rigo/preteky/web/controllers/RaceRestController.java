@@ -93,11 +93,11 @@ public class RaceRestController {
 
     }
 
-    @PostMapping(value="/findRace")
+    @GetMapping(value="/findRace")
     public Race getRaceResource (@RequestBody ObjectNode jsonNodes){
         return raceService.findByIdFromRepository(jsonNodes.get("id").asInt());
     }
-    @PostMapping(value="/delete")
+    @DeleteMapping(value="/delete")
     public String deleteRace (@RequestBody ObjectNode jsonNodes){
         raceService.deleteRace(jsonNodes.get("id").asInt());
         return "Post delete Successfully";

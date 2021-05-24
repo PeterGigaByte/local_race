@@ -9,11 +9,18 @@
           th:href="@{/images/race.png}">
     <link th:rel="stylesheet" th:href="@{/css/index.css}">
     <link th:rel="stylesheet" th:href="@{/css/table.css}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link th:rel="stylesheet" th:href="@{/css/resultRadio.css}">
+
 
 
     <link rel="stylesheet" th:href="@{/css/resultsApplications.css}">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.14/dist/jBox.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.14/dist/jBox.all.min.css" rel="stylesheet">
 
@@ -101,12 +108,12 @@
     </div>
     <div  style="overflow:scroll;margin-left:15%; height:700px;">
         <div th:each="entry: ${startListMap}"  th:id="${entry.key.id}" th:with="list=${entry.value}" class="display hidden">
-            <table class="rightTable"  style="width:75%!important;"  >
+            <table class="rightTable"  style="width:80%!important;"  >
                 <thead>
                 <tr style="background-color: #0b5ea0; color: white;">
                     <th style="  padding-left:20px;" th:text="${entry.key.disciplineName +
                 ',  '+entry.key.getDayMonth()+' - '+entry.key.disciplineTime+
-                ', '+entry.key.phaseName+' - '+entry.key.phaseNumber}" colspan="4">
+                ', '+entry.key.phaseName+' - '+entry.key.phaseNumber}" th:colspan="${span}">
                     </th>
                     <span th:if="${entry.key.cameraId!=null}">
                     <th colspan="1">
@@ -143,35 +150,56 @@
                     <th>Meno</th>
                     <th>Dátum narodenia</th>
                     <th>Klub</th>
-                    <th>Výkon atléta</th>
+                    <th th:colspan="${entry.key.disciplineType=='run' ? '1' : '2'}">Výkon atléta</th>
+                    <span th:if="${activeRace.getSettings().getReactions()==1 && entry.key.disciplineType=='run'}">
+                     <th style="width: 20%">Reakčný čas</th>
+                </span>
+                    <span th:if="${activeRace.getSettings().getReactions()!=1 || entry.key.disciplineType!='run'}">
+                     <th  class="hidden">Reakčný čas</th>
+                </span>
+                    <th class="hidden"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="startList : ${entry.value}" >
-                    <td style="width: 1%" th:text="${startList.place}"></td>
+                <tr th:class="${startList.status == null ? '' : 'redC'}" th:each="startList : ${entry.value}" >
+                    <td th:class="${startList.status == null ? '' : 'redC'}" style="width: 1%" th:text="${startList.place}"></td>
                      <span th:if="${entry.key.disciplineType=='run'}">
-                        <td style="width: 5%" th:text="${startList.line}"></td>
+                        <td th:class="${startList.status == null ? '' : 'redC'}" style="width: 5%" th:text="${startList.line}"></td>
                      </span>
                     <span th:if="${entry.key.disciplineType!='run'}">
-                     <td class="hidden">Line</td>
+                     <td th:class="${startList.status == null ? '' : 'redC'}" class="hidden">Line</td>
                 </span>
-                    <td style="width: 10%">
+                    <td th:class="${startList.status == null ? '' : 'redC'}" style="width: 10%">
                         <span th:if="${#maps.containsKey(bibMap,startList.athlete)}">
                             <span  th:text="${bibMap.get(startList.athlete).bib}"></span>
                         </span>
                     </td>
                     </span>
-                    <td th:value="${startList.id}" style="width: 20%" th:text="${startList.athlete.firstName +' '+startList.athlete.surname}"></td>
-                    <td style="width: 10%" th:text="${#dates.format(startList.athlete.getDateBirth(), 'dd.MM.yyyy')}"></td>
-                    <td style="width: 20%">
+                    <td th:class="${startList.status == null ? '' : 'redC'}" th:value="${startList.id}" style="width: 20%" th:text="${startList.athlete.firstName +' '+startList.athlete.surname}"></td>
+                    <td th:class="${startList.status == null ? '' : 'redC'}" style="width: 10%" th:text="${#dates.format(startList.athlete.getDateBirth(), 'dd.MM.yyyy')}"></td>
+                    <td th:class="${startList.status == null ? '' : 'redC'}" style="width: 20%">
                         <span th:if="${#maps.containsKey(clubs,startList.athlete)}">
                             <span  th:text="${clubs.get(startList.athlete).club.shortcutClubName}"></span>
                         </span>
                     </td>
-                    <td class="input-hover" style="width: 20%" ><span th:if="${startList.discipline.disciplineType=='run'}">
+                    <td th:class="${startList.status == null ? '' : 'redC'}" class="input-hover" style="width: 20%" ><span th:if="${startList.discipline.disciplineType=='run'}">
                         <span th:text="${startList.getTimeResultPerformance()}"></span>
                     </span>
                         <span th:if="${startList.discipline.disciplineType!='run'}" > <span th:text="${startList.resultPerformance}"></span></span>
+                    </td>
+                    <td th:class="${startList.status == null ? '' : 'redC'}" class="input-hover" th:if="${activeRace.getSettings().getReactions()==1 && startList.discipline.disciplineType=='run' ? 'display:block' : 'display:none'}"  style="width: 20%" th:text="${startList.getReactions()}"></td>
+                    <td  th:if="${startList.discipline.disciplineType=='run' ? 'display:block' : 'display:none'}" >
+                        <div  style="display: inline-block; width: 200px"  class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label th:onclick="'window.location.href=\'/results/setDns/' + ${startList.id} + '\''"  th:class="'btn btn-secondary '+${startList.status == 'DNS' ? 'active' : ''}"  >
+                                <a  style="color: white" th:name="${startList.id}"> DNS</a>
+                            </label>
+                            <label th:onclick="'window.location.href=\'/results/setDnf/' + ${startList.id} + '\''" th:class="'btn btn-secondary '+${startList.status == 'DNF' ? 'active' : ''}"  style="display: inline-block" >
+                                <a  style="color: white"  th:name="${startList.id}"> DNF</a>
+                            </label>
+                            <label th:onclick="'window.location.href=\'/results/setDq/' + ${startList.id} + '\''" th:class="'btn btn-secondary '+${startList.status == 'DQ' ? 'active' : ''}"  >
+                                <a  style="color: white"  th:name="${startList.id}"  > DQ</a>
+                            </label>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -187,7 +215,6 @@
 <div id="loading" class="center-screen"><img class="loading-img" alt="ha"  th:src="@{/images/loading.gif}"></div>
 <div id="overlay-down" class="overlay"></div>
 <div th:id="overlay"></div>
-
 
 <script th:src="@{/js/sideMenu.js}"></script>
 <script th:src="@{/js/cookies.js}" type="text/javascript"></script>

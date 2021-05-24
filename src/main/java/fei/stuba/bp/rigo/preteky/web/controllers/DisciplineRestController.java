@@ -205,15 +205,15 @@ public class DisciplineRestController {
      * @param jsonNode - vstupné parametre, id disciplíny
      * @return vracia nám nastavenia s parametrami, ktoré naplnia formulár
      */
-    @PostMapping(value = "/disciplineEdit/settings")
+    @PutMapping(value = "/disciplineEdit/settings")
     public QualificationSettings getQualificationSettings(@RequestBody JsonNode jsonNode){
         return disciplineService.findQualificationSettingsByDisciplineId(jsonNode.get("id").asInt());
     }
-    @GetMapping(value = "/empty/delete")
+    @DeleteMapping(value = "/empty/delete")
     public void deleteEmptyDisciplines(){
         disciplineService.deleteDisciplineByRaceIdAndParticipantsEquals(activeRace().getId(),0);
     }
-    @GetMapping(value = "/camera/numbering")
+    @PutMapping(value = "/camera/numbering")
     public void changeCameraNumbering(){
         disciplineService.changeCameraNumbering(activeRace().getId());
     }

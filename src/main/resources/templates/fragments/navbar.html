@@ -10,7 +10,9 @@
     <a  th:class="${activePage == 'disciplines'} ? 'active' : ''" href="/disciplines">Disciplíny</a>
     <a  th:class="${activePage == 'applications'} ? 'active' : ''" href="/applications">Prihlášky</a>
     <a  th:class="${activePage == 'results'} ? 'active' : ''" href="/results">Výsledky</a>
-    <a  th:class="${activePage == 'database'} ? 'active' : ''"  onclick="openNav()">Databáza klubov a pretekárov</a>
+    <a style="color: white"   th:class="${activePage == 'database'} ? 'active' : ''"  onclick="openNav()"
+       onMouseOver="this.style.color='black';this.style.textDecoration = 'underline'"
+       onMouseOut="this.style.color='white';this.style.textDecoration = ''">Databáza klubov a pretekárov</a>
     <span th:if="${activePage == 'applications'}">
         <a id="Tooltip-2" style="float: right" class="target">Informácie</a>
     </span>

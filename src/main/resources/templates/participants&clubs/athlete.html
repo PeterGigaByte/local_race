@@ -120,7 +120,7 @@
             <td th:text="${result.discipline.disciplineName}"></td>
             <td th:text="${result.place}"></td>
             <td ><span th:if="${result.discipline.disciplineType=='run'}">
-                        <span th:text="${result.getTimeResultPerformance()}"></span>
+                        <span th:text="${result.status!=null ? result.status : result.getTimeResultPerformance()}"></span>
                     </span>
                 <span th:if="${result.discipline.disciplineType!='run'}" > <span th:text="${result.resultPerformance}"></span></span>
             </td>
