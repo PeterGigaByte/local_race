@@ -139,7 +139,7 @@ public class ApResultsImp implements ApResultsService {
                         ResultStartList previous = null;
                         int points = 11;
                         for(ResultStartList result: resultStartLists){
-                            if(previous != null && previous.getResultPerformance()!=null && result.getResultPerformance()!=null && previous.getResultPerformance().equals(result.getResultPerformance())){
+                            if(previous != null && previous.getResultPerformance()!=null && previous.getResultPerformance()!=0 && result.getResultPerformance()!=null && result.getResultPerformance()!=0 && previous.getResultPerformance().equals(result.getResultPerformance())){
                                 order--;
                                 result.setAbsoluteOrder("="+order +".");
                                 if(race.getSettings().getTypeScoring().equals("club_competition") && points >= 1){
@@ -149,7 +149,7 @@ public class ApResultsImp implements ApResultsService {
                                 resultStartListRepository.save(result);
                                 order++;
                             }
-                            else if(result.getResultPerformance()!=null){
+                            else if(result.getResultPerformance()!=null && result.getResultPerformance()!=0){
                                 result.setAbsoluteOrder(order +".");
                                 order++;
                                 if(race.getSettings().getTypeScoring().equals("club_competition") && points >= 1){
