@@ -1,5 +1,4 @@
 Event Code;Date;Time;Lane/order;Bib No
-1;22.4.2021;00:00;;;;;;15000;15 km Muži Beh 1;;Peter Rigo
 2;22.4.2021;14:25;;;;;;60;60 m Starší žiaci Rozbeh 1;;Peter Rigo
 ;;;4;23;Lincoln;Abraham;NRŠOG
 ;;;3;24;Kova¾cik;Ilja;NRŠOG
@@ -8,7 +7,7 @@ Event Code;Date;Time;Lane/order;Bib No
 7;22.4.2021;14:25;;;;;;60;60 m Starší žiaci Rozbeh 2;;Peter Rigo
 ;;;4;14;Vajda;Ibrahim;NRŠOG
 ;;;3;25;Mariak;Juraj;NRŠOG
-;;;2;31;Šatan;Miro;NRŠOG
+;;;2;0;Šatan;Miro;NRŠOG
 ;;;6;22;Vajda;Ján;NRŠOG
 3;22.4.2021;14:50;;;;;;100;100 m Ženy Rozbeh 1;;Peter Rigo
 6;22.4.2021;15:00;;;;;;60;60 m Muži Beh 1;;Peter Rigo

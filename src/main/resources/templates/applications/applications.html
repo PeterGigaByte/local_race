@@ -5,20 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prihlášky</title>
-    <link th:rel="icon"
-          th:href="@{/images/race.png}">
+    <link th:rel="icon" th:href="@{/images/race.png}">
     <link th:rel="stylesheet" th:href="@{/css/index.css}">
     <link th:rel="stylesheet" th:href="@{/css/table.css}">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link th:rel="stylesheet" th:href="@{/css/maxcdnBootstrap.css}">
 
 
     <link rel="stylesheet" th:href="@{/css/resultsApplications.css}">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.14/dist/jBox.all.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.14/dist/jBox.all.min.css" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/ajaxJquerry.js}"></script>
 
     <link th:rel="stylesheet" th:href="@{/css/sideMenu.css}">
+    <script type="text/javascript" th:src="@{/js/jbox.js}"></script>
+    <link th:rel="stylesheet" th:href="@{/css/jbox.css}">
 
     <link rel="stylesheet" type="text/css" th:href="@{/dataTables/datatables.min.css}"/>
     <script type="text/javascript" th:src="@{/dataTables/datatables.min.js}"></script>
@@ -45,7 +43,7 @@
 <main th:id="main">
 
     <div th:class="activeRace">
-        <a href="#">
+        <a >
             <span class="hidden" th:if="${activeRace.id!=null}">
                 <span th:id="raceId" th:text="${activeRace.id}"></span>
             </span>
