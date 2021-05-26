@@ -135,6 +135,10 @@ public class ApResultsImp implements ApResultsService {
                 for (String phase : allPhases) {
                     List<ResultStartList> resultStartLists = resultStartListRepository.findAllByDisciplineRaceIdAndDisciplineCategoryAndDisciplineDisciplineNameAndDisciplinePhaseNameOrderByResultPerformanceAsc(activeRace,category,discipline,phase);
                     if(!resultStartLists.isEmpty()){
+                        String type = resultStartLists.get(0).getDiscipline().getDisciplineType();
+                        if(!type.equals("run")){
+                            resultStartLists = resultStartListRepository.findAllByDisciplineRaceIdAndDisciplineCategoryAndDisciplineDisciplineNameAndDisciplinePhaseNameOrderByResultPerformanceDesc(activeRace,category,discipline,phase);
+                        }
                         int order = 1;
                         ResultStartList previous = null;
                         int points = 11;
@@ -158,7 +162,9 @@ public class ApResultsImp implements ApResultsService {
                                 }
                                 resultStartListRepository.save(result);
                             }else{
-                                result.setPoints(null);
+                                if(race.getSettings().getTypeScoring().equals("club_competition") && points >= 1){
+                                    result.setPoints(null);
+                                }
                                 result.setAbsoluteOrder(null);
                                 resultStartListRepository.save(result);
                             }
