@@ -50,7 +50,7 @@ public class RaceImp implements RaceService {
     }
     @Override
     public Race getRaceById(Integer id){
-        return raceRepository.getOne(id);
+        return raceRepository.findRaceById(id);
     }
 
     @Override

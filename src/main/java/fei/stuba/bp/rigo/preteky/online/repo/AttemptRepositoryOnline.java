@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface AttemptRepositoryOnline extends JpaRepository<Attempt, Integer>, JpaSpecificationExecutor<Attempt> {
     List<Attempt> findAllByResultStartListDisciplineRaceId(int id);
-    Attempt findAttemptById(int id);
+    Attempt findByIdAttempt(int id);
 }

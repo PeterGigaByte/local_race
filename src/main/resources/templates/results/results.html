@@ -118,8 +118,12 @@
                     <th>
                      <span th:if="${entry.key.cameraId!=null}">
                     <span th:text="${entry.key.wind}"></span>
-                    <span><img  alt="wind" style="width: 30px;height: auto"  th:src="@{/images/wind_flag_storm.png}"></span>
+                    <span>
+                        <img  alt="wind" style="width: 30px;height: auto"  th:src="@{/images/wind_flag_storm.png}"></span>
                      </span>
+                        <span  th:if="${entry.key.disciplineType!='run'}">
+                            <a style="color: #8dff8e" th:href="@{/results/attempts/{raceId}/{disciplineId}(raceId=${activeRace.id},disciplineId=${entry.key.id})}">Pokusy</a>
+                        </span>
                     </th>
                     <th>
                         </span>

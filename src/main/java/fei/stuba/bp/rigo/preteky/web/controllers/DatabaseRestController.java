@@ -198,7 +198,7 @@ public class DatabaseRestController {
         List<Attempt> attemptList = attemptRepositoryOnline.findAllByResultStartListDisciplineRaceId(activeRace().getId());
         for (Attempt a :
                 attemptList) {
-            Attempt localA = attemptRepository.findAttemptById(a.getId());
+            Attempt localA = attemptRepository.findByIdAttempt(a.getIdAttempt());
             if(localA!=null){
                 a.setPerformance(localA.getPerformance());
                 a.setNum(localA.getNum());

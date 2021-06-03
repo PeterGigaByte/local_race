@@ -21,12 +21,16 @@ public class Attempt implements Serializable {
     private ResultStartList resultStartList;
 
     @Column(name = "performance")
-    private String performance;
+    private Double performance;
 
     @Column(name = "num")
     private Integer num;
 
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    public Attempt() {
+    }
+
+    public Attempt(ResultStartList resultStartList) {
+        this.resultStartList = resultStartList;
+    }
 
 }
